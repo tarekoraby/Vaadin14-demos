@@ -1,4 +1,4 @@
-package com.example.test;
+package com.example.test.radio;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
