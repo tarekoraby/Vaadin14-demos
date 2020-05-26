@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example.test</groupId>
     <artifactId>v14-plain-starter</artifactId>
@@ -13,14 +16,15 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
-        <vaadin.version>14.1.28</vaadin.version>
+        <vaadin.version>14.2.0</vaadin.version>
 
         <drivers.downloader.phase>pre-integration-test</drivers.downloader.phase>
-        <jetty.version>9.4.27.v20200227</jetty.version>
+        <jetty.version>9.4.28.v20200408</jetty.version>
     </properties>
 
     <repositories>
-        <!-- The order of definitions matters. Explicitly defining central here to make sure it has the highest priority. -->
+        <!-- The order of definitions matters. Explicitly defining central 
+            here to make sure it has the highest priority. -->
 
         <!-- Main Maven repository -->
         <repository>
@@ -58,7 +62,8 @@
             <!-- Replace artifactId with vaadin-core to use only free components -->
             <artifactId>vaadin</artifactId>
             <exclusions>
-                <!-- Webjars are only needed when running in Vaadin 13 compatibility mode -->
+                <!-- Webjars are only needed when running in Vaadin 13 compatibility 
+                    mode -->
                 <exclusion>
                     <groupId>com.vaadin.webjar</groupId>
                     <artifactId>*</artifactId>
@@ -121,9 +126,8 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.version}</version>
                 <configuration>
-                    <!-- If using IntelliJ IDEA with autocompilation, this
-                    might cause lots of unnecessary compilations in the
-                    background.-->
+                    <!-- If using IntelliJ IDEA with autocompilation, this 
+                        might cause lots of unnecessary compilations in the background. -->
                     <scanIntervalSeconds>2</scanIntervalSeconds>
                     <!-- Use war output directory to get the webpack files -->
                     <webAppConfig>
@@ -132,15 +136,16 @@
                 </configuration>
             </plugin>
 
-            <!--
-                Take care of synchronizing java dependencies and imports in
-                package.json and main.js files.
-                It also creates webpack.config.js if not exists yet.
-            -->
+            <!-- Take care of synchronizing java dependencies and imports 
+                in package.json and main.js files. It also creates webpack.config.js if not 
+                exists yet. -->
             <plugin>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-maven-plugin</artifactId>
                 <version>${vaadin.version}</version>
+                <configuration>
+                    <pnpmEnable>true</pnpmEnable>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -172,6 +177,9 @@
                     <plugin>
                         <groupId>com.vaadin</groupId>
                         <artifactId>vaadin-maven-plugin</artifactId>
+                        <configuration>
+                            <pnpmEnable>true</pnpmEnable>
+                        </configuration>
                         <executions>
                             <execution>
                                 <goals>
@@ -186,7 +194,7 @@
         </profile>
 
         <profile>
-            <id>integration-tests</id>
+            <id>it</id>
             <build>
                 <plugins>
                     <plugin>
@@ -217,7 +225,8 @@
                         </executions>
                     </plugin>
 
-                    <!-- Runs the integration tests (*IT) after the server is started -->
+                    <!-- Runs the integration tests (*IT) after the server 
+                        is started -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
@@ -234,7 +243,8 @@
                             <trimStackTrace>false</trimStackTrace>
                             <enableAssertions>true</enableAssertions>
                             <systemPropertyVariables>
-                                <!-- Pass location of downloaded webdrivers to the tests -->
+                                <!-- Pass location of downloaded webdrivers 
+                                    to the tests -->
                                 <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
                             </systemPropertyVariables>
                         </configuration>
