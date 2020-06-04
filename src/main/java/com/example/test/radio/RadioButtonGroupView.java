@@ -7,16 +7,24 @@ import com.vaadin.flow.router.Route;
 /**
  * The main view contains a button and a click listener.
  */
-@Route("radio")
+@Route("radioview")
 public class RadioButtonGroupView extends VerticalLayout {
 
     public RadioButtonGroupView() {
-    	RadioButtonGroup<String> radio = new RadioButtonGroup<>();
-    	radio.setLabel("Horizontal");
-    	radio.setItems("Option one", "Option two", "Option three");
-    	radio.setValue("Option one");
+        RadioButtonGroup<String> radioOne = new RadioButtonGroup<>();
+        radioOne.setLabel("Horizontal RadioButtonGroup");
+        radioOne.setItems("Option one", "Option two", "Option three");
+        radioOne.setValue("Option one");
 
-        add(radio);
+        RadioButtonGroup<String> radioTwo = new RadioButtonGroup<>();
+        radioTwo.setLabel(
+                "Horizontal RadioButtonGroup with custom buttons style");
+        radioTwo.setItems("Option one", "Option two", "Option three");
+        radioTwo.setValue("Option one");
+
+        radioTwo.getChildren().forEach(child -> child.getElement().getStyle()
+                .set("padding-right", "80px"));
+
+        add(radioOne, radioTwo);
     }
 }
-
