@@ -10,62 +10,62 @@ import com.vaadin.flow.router.Route;
 /**
  * The main view contains a button and a click listener.
  */
-@Route("grid")
+@Route("GridView")
 public class GridView extends VerticalLayout {
 
-	public GridView() {
-		List<Person> personList = new ArrayList<>();
+    public GridView() {
+        List<Person> personList = new ArrayList<>();
 
-		personList.add(new Person("Lucas", "Kane", 68));
-		personList.add(new Person("Peter", "Buchanan", 38));
-		personList.add(new Person("Samuel", "Lee", 53));
-		personList.add(new Person("Anton", "Ross", 37));
-		personList.add(new Person("Aaron", "Atkinson", 18));
-		personList.add(new Person("Jack", "Woodward", 28));
+        personList.add(new Person("Lucas", "Kane", 68));
+        personList.add(new Person("Peter", "Buchanan", 38));
+        personList.add(new Person("Samuel", "Lee", 53));
+        personList.add(new Person("Anton", "Ross", 37));
+        personList.add(new Person("Aaron", "Atkinson", 18));
+        personList.add(new Person("Jack", "Woodward", 28));
 
-		Grid<Person> grid = new Grid<>(Person.class);
-		grid.setItems(personList);
+        Grid<Person> grid = new Grid<>(Person.class);
+        grid.setItems(personList);
 
-		// The Grid<>(Person.class) sorts the properties and in order to
-		// reorder the properties we use the 'setColumns' method.
-		grid.setColumns("firstName", "lastName", "age");
+        // The Grid<>(Person.class) sorts the properties and in order to
+        // reorder the properties we use the 'setColumns' method.
+        grid.setColumns("firstName", "lastName", "age");
 
-		add(grid);
-	}
-	
-	public class Person {
-		private String firstName;
-		private String lastName;
-		private int age;
+        add(grid);
+    }
 
-		public Person(String firstName, String lastName, int age) {
-			setFirstName(firstName);
-			setLastName(lastName);
-			setAge(age);
-		}
+    public class Person {
+        private String firstName;
+        private String lastName;
+        private int age;
 
-		public String getFirstName() {
-			return firstName;
-		}
+        public Person(String firstName, String lastName, int age) {
+            setFirstName(firstName);
+            setLastName(lastName);
+            setAge(age);
+        }
 
-		public void setFirstName(String firstName) {
-			this.firstName = firstName;
-		}
+        public String getFirstName() {
+            return firstName;
+        }
 
-		public String getLastName() {
-			return lastName;
-		}
+        public void setFirstName(String firstName) {
+            this.firstName = firstName;
+        }
 
-		public void setLastName(String lastName) {
-			this.lastName = lastName;
-		}
+        public String getLastName() {
+            return lastName;
+        }
 
-		public int getAge() {
-			return age;
-		}
+        public void setLastName(String lastName) {
+            this.lastName = lastName;
+        }
 
-		public void setAge(int age) {
-			this.age = age;
-		}
-	}
+        public int getAge() {
+            return age;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+    }
 }
