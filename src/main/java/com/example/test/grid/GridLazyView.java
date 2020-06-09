@@ -42,7 +42,6 @@ public class GridLazyView extends VerticalLayout {
     class PersonService {
         List<Person> personList;
 
-
         public Stream<Person> fetchPersons(int offset, int limit) {
             delayInSeconds(3);
             ensureTestData();
@@ -67,10 +66,6 @@ public class GridLazyView extends VerticalLayout {
         private void ensureTestData() {
             if (personList == null) {
                 personList = createPersonList(1000);
-                /*
-                 * Collections.sort(personList, (p1, p2) -> p1.getAge() -
-                 * p2.getAge());
-                 */
             }
         }
 
@@ -90,8 +85,7 @@ public class GridLazyView extends VerticalLayout {
     }
 
 
-
-    public class Person {
+    class Person {
         private String firstName;
         private String lastName;
         private int age;
