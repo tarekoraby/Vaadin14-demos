@@ -1,4 +1,4 @@
-package com.example.test.grid.grid;
+package com.example.test.grid;
 
 import java.util.ArrayList;
 import java.util.HashMap;
