@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.Route;
 
 /**
@@ -28,20 +26,9 @@ public class GridView extends VerticalLayout {
         Grid<Person> grid = new Grid<>(Person.class);
         grid.setItems(personList);
 
-        grid.setItemDetailsRenderer(new ComponentRenderer<>(person -> {
-            VerticalLayout layout = new VerticalLayout();
-            layout.add(new Label("Name: " + person.getFirstName() + " "
-                    + person.getLastName()));
-            layout.add(new Label("Age: " + person.getAge()));
-            return layout;
-        }));
-
-
         // The Grid<>(Person.class) sorts the properties and in order to
         // reorder the properties we use the 'setColumns' method.
         grid.setColumns("firstName", "lastName", "age");
-
-        grid.getColumns().get(1).setVisible(false);
 
         add(grid);
     }
