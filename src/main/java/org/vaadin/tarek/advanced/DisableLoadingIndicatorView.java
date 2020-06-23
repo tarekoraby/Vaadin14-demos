@@ -8,9 +8,6 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-/**
- * The main view contains a button and a click listener.
- */
 @Route("DisableLoadingIndicatorView")
 public class DisableLoadingIndicatorView extends VerticalLayout {
 
