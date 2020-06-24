@@ -32,9 +32,10 @@ public class GridLazyView extends VerticalLayout {
         DataProvider<Person, Void> provider = DataProvider
                 .fromCallbacks(query -> personService.fetchPersons(query.getOffset(),
                         query.getLimit()),
-                        query -> personService.getPersonCount(query.getOffset(),
-                                query.getLimit()));
+                        query -> personService.getPersonCount());
         grid.setDataProvider(provider);
+
+        grid.setColumns("id", "firstName", "lastName");
 
         add(grid);
     }
@@ -48,11 +49,9 @@ public class GridLazyView extends VerticalLayout {
             return personList.stream().skip(offset).limit(limit);
         }
 
-        public int getPersonCount(int offset, int limit) {
+        public int getPersonCount() {
             ensureTestData();
-            final long count = personList.stream().skip(offset).limit(limit)
-                    .count();
-            return (int) count;
+            return personList.size();
         }
 
         private void delayInSeconds(int seconds) {
@@ -76,7 +75,7 @@ public class GridLazyView extends VerticalLayout {
                 final Person newPerson = new Person(
                         RandomStringUtils.randomAlphabetic(nameLen),
                         RandomStringUtils.randomAlphabetic(nameLen),
-                        ThreadLocalRandom.current().nextInt(0, 100));
+                        i);
                 newPersonList.add(newPerson);
             }
             return newPersonList;
@@ -85,15 +84,15 @@ public class GridLazyView extends VerticalLayout {
     }
 
 
-    class Person {
+    public class Person {
         private String firstName;
         private String lastName;
-        private int age;
+        private int id;
 
-        public Person(String firstName, String lastName, int age) {
+        public Person(String firstName, String lastName, int id) {
             setFirstName(firstName);
             setLastName(lastName);
-            setAge(age);
+            setId(id);
         }
 
         public String getFirstName() {
@@ -112,12 +111,12 @@ public class GridLazyView extends VerticalLayout {
             this.lastName = lastName;
         }
 
-        public int getAge() {
-            return age;
+        public int getId() {
+            return id;
         }
 
-        public void setAge(int age) {
-            this.age = age;
+        public void setId(int id) {
+            this.id = id;
         }
     }
 }
