@@ -1,0 +1,3 @@
+:host([theme~="wide-combobox-overlay"]){
+	width: 800px !important;
+}

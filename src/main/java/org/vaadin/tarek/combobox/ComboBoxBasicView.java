@@ -1,6 +1,7 @@
 package org.vaadin.tarek.combobox;
 
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
@@ -8,6 +9,7 @@ import com.vaadin.flow.router.Route;
  * The main view contains a button and a click listener.
  */
 @Route("ComboBoxBasicView")
+@CssImport(value = "./styles/vaadin-combobox-overlay.css", themeFor = "vaadin-combo-box-overlay")
 public class ComboBoxBasicView extends VerticalLayout {
 
     public ComboBoxBasicView() {
@@ -20,9 +22,15 @@ public class ComboBoxBasicView extends VerticalLayout {
         placeHolderComboBox.setPlaceholder("Placeholder");
 
         ComboBox<String> valueComboBox = new ComboBox<>();
-        valueComboBox.setItems("Value", "Option one", "Option two");
-        valueComboBox.setValue("Value");
+        valueComboBox.setItems("Option one", "Option two", "Option three");
+        valueComboBox.setValue("Option one");
 
-        add(labelComboBox, placeHolderComboBox, valueComboBox);
+        ComboBox<String> wideOverlayComboBox = new ComboBox<>();
+        wideOverlayComboBox.setItems("Option one", "Option two");
+        wideOverlayComboBox.getElement().setAttribute("theme",
+                "wide-combobox-overlay");
+
+        add(labelComboBox, placeHolderComboBox,
+                valueComboBox, wideOverlayComboBox);
     }
 }
