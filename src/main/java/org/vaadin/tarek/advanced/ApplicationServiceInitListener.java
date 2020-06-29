@@ -2,40 +2,78 @@ package org.vaadin.tarek.advanced;
 
 import java.time.Instant;
 
+import org.vaadin.tarek.advanced.security.LoginView;
+import org.vaadin.tarek.advanced.security.SecurityUtils;
+
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.dependency.NpmPackage;
+import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.server.ServiceInitEvent;
+import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.server.VaadinServiceInitListener;
 import com.vaadin.flow.spring.annotation.SpringComponent;
+import com.vaadin.shrinkwrap.VaadinCoreShrinkWrap;
 
 @SpringComponent
 public class ApplicationServiceInitListener
 implements VaadinServiceInitListener {
 
+    int maxInactiveInterval = 1800;
+
     @Override
     public void serviceInit(ServiceInitEvent serviceInitEvent) {
         // VaadinService initialization occurs when the first request arrives to
         // the server after startup, once per application
-        System.out.println("VaadinService initialized!");
+        print("VaadinService initialized! " + Instant.now());
+        print("Vaadin version: " + VaadinCoreShrinkWrap.class
+                .getAnnotation(NpmPackage.class).version());
+
+        print("DeploymentConfiguration.isCloseIdleSessions() "
+                + VaadinService.getCurrent().getDeploymentConfiguration()
+                .isCloseIdleSessions());
+        print("DeploymenntConfiguration.getHeartbeatInterval() "
+                + VaadinService.getCurrent().getDeploymentConfiguration()
+                .getHeartbeatInterval());
+        print("HTTP sessions maxInactiveInterval: " + maxInactiveInterval);
 
         serviceInitEvent.getSource().addUIInitListener(event -> {
             UI ui = event.getUI();
-            System.out.println("New UI instantiated. UI id # " + ui.getUIId()
-            + " " + Instant.now() + " " + ui.toString());
-            // ui.getLoadingIndicatorConfiguration().setApplyDefaultTheme(false);
+            print("New UI instantiated. UI id # " + ui.getUIId() + " "
+                    + Instant.now() + " " + ui.toString());
+            ui.addBeforeEnterListener(this::authenticateNavigation);
         });
 
         serviceInitEvent.getSource().addSessionInitListener(initEvent -> {
-            System.out.println("New Session initialized"
+            print("New Session initialized " + Instant.now() + " "
                     + initEvent.getSession().toString());
+
+            initEvent.getSession().getSession()
+            .setMaxInactiveInterval(maxInactiveInterval);
         });
 
         serviceInitEvent.getSource().addSessionDestroyListener(destroyEvent -> {
-            System.out.println(
-                    "Session Destroyed "
-                    + destroyEvent.getSession().toString());
+            print("Session Destroyed " + Instant.now()
+            + " "
+            + destroyEvent.getSession().toString());
+            invalidateAuthentication();
         });
     }
 
+    private void invalidateAuthentication() {
+        if (SecurityUtils.isUserLoggedIn()) {
+            SecurityUtils.setAuthenticated(false);
+        }
+    }
 
+    private void authenticateNavigation(BeforeEnterEvent event) {
+        if (!LoginView.class.equals(event.getNavigationTarget())
+                && !SecurityUtils.isUserLoggedIn()) {
+            event.rerouteTo(LoginView.class);
+        }
+    }
+
+    private void print(String string) {
+        System.out.println(string);
+    }
 
 }
