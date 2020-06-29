@@ -1,17 +1,17 @@
 package com.example.test;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Rule;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-
 import com.vaadin.flow.theme.AbstractTheme;
 import com.vaadin.testbench.ScreenshotOnFailureRule;
 import com.vaadin.testbench.TestBench;
 import com.vaadin.testbench.parallel.ParallelTest;
-
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 /**
  * Base class for TestBench IntegrationTests on chrome.
  * <p>
@@ -24,7 +24,7 @@ import com.vaadin.testbench.parallel.ParallelTest;
  * as a base class for you own TestBench tests.
  * <p>
  * To learn more about TestBench, visit
- * <a href="https://vaadin.com/docs/testbench/testbench-overview.html">Vaadin TestBench</a>.
+ * <a href="https://vaadin.com/docs/v10/testbench/testbench-overview.html">Vaadin TestBench</a>.
  */
 public abstract class AbstractViewTest extends ParallelTest {
     private static final int SERVER_PORT = 8080;
@@ -43,6 +43,11 @@ public abstract class AbstractViewTest extends ParallelTest {
     protected AbstractViewTest(String route, By rootSelector) {
         this.route = route;
         this.rootSelector = rootSelector;
+    }
+
+    @BeforeClass
+    public static void setupClass() {
+        WebDriverManager.chromedriver().setup();
     }
 
     @Before
@@ -67,7 +72,7 @@ public abstract class AbstractViewTest extends ParallelTest {
 
     /**
      * Asserts that the given {@code element} is rendered using a theme
-     * identified by {@code themeClass}. If the the is not found, JUnit
+     * identified by {@code themeClass}. If the theme is not found, JUnit
      * assert will fail the test case.
      *
      * @param element       web element to check for the theme

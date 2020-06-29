@@ -1,5 +1,7 @@
 package org.vaadin.tarek;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -19,12 +21,11 @@ import com.vaadin.flow.server.PWA;
 @CssImport(value = "./styles/vaadin-text-field-styles.css", themeFor = "vaadin-text-field")
 public class MainView extends VerticalLayout {
 
-    public MainView() {
+    public MainView(@Autowired GreetService greetService) {
         // Use TextField for standard text input
         TextField textField = new TextField("Your name");
 
         // Button click listeners can be defined as lambda expressions
-        GreetService greetService = new GreetService();
         Button button = new Button("Say hello",
                 e -> Notification.show(greetService.greet(textField.getValue())));
 

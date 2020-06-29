@@ -5,7 +5,9 @@ import java.time.Instant;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.server.ServiceInitEvent;
 import com.vaadin.flow.server.VaadinServiceInitListener;
+import com.vaadin.flow.spring.annotation.SpringComponent;
 
+@SpringComponent
 public class ApplicationServiceInitListener
 implements VaadinServiceInitListener {
 
@@ -18,7 +20,7 @@ implements VaadinServiceInitListener {
         serviceInitEvent.getSource().addUIInitListener(event -> {
             UI ui = event.getUI();
             System.out.println("New UI instantiated. UI id # " + ui.getUIId()
-                    + " " + Instant.now() + " " + ui.toString());
+            + " " + Instant.now() + " " + ui.toString());
             // ui.getLoadingIndicatorConfiguration().setApplyDefaultTheme(false);
         });
 
@@ -28,9 +30,12 @@ implements VaadinServiceInitListener {
         });
 
         serviceInitEvent.getSource().addSessionDestroyListener(destroyEvent -> {
-            System.out.println("Session Destroyed "
+            System.out.println(
+                    "Session Destroyed "
                     + destroyEvent.getSession().toString());
         });
     }
+
+
 
 }
