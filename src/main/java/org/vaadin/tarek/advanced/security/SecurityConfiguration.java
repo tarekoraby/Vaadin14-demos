@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-
 @EnableWebSecurity
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -27,11 +26,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .requestCache(new CustomRequestCache()).and()
         .authorizeRequests()
         .requestMatchers(SecurityUtils::isFrameworkInternalRequest)
-        .permitAll()
-
-        .anyRequest().authenticated()
-
-        .and().formLogin().loginPage(LOGIN_URL).permitAll()
+        .permitAll().anyRequest().authenticated().and()
+                .formLogin()
+        .loginPage(LOGIN_URL).permitAll()
         .loginProcessingUrl(LOGIN_PROCESSING_URL)
         .failureUrl(LOGIN_FAILURE_URL).and().logout()
         .logoutSuccessUrl(LOGOUT_SUCCESS_URL);
