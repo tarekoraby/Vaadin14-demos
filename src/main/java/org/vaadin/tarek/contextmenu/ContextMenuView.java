@@ -21,16 +21,20 @@ public class ContextMenuView extends VerticalLayout {
 
         Label message = new Label("-");
 
-        contextMenu.addItem("First menu item",
+        MenuItem itemOne =contextMenu.addItem("First menu item",
                 e -> message.setText("Clicked on the first item"));
 
-        contextMenu.addItem("Second menu item",
+        MenuItem itemTwo = contextMenu.addItem("Second menu item",
                 e -> message.setText("Clicked on the second item"));
 
+        itemOne.setId("item-one");
+        itemTwo.setId("item-two");
+
         // The created MenuItem component can be saved for later use
-        MenuItem item = contextMenu.addItem("Disabled menu item",
+        MenuItem itemThree = contextMenu.addItem(
+                "Disabled menu item",
                 e -> message.setText("This cannot happen"));
-        item.setEnabled(false);
+        itemThree.setEnabled(false);
 
         add(textField, message);
     }
