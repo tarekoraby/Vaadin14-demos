@@ -1,4 +1,4 @@
-package org.vaadin.tarek.advanced;
+package org.vaadin.tarek.advanced.javascript;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;

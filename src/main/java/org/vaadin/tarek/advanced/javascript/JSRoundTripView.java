@@ -1,4 +1,4 @@
-package org.vaadin.tarek.advanced;
+package org.vaadin.tarek.advanced.javascript;
 
 import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.UI;
