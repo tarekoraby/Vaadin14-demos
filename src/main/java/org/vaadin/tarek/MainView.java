@@ -3,6 +3,7 @@ package org.vaadin.tarek;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -39,7 +40,19 @@ public class MainView extends VerticalLayout {
 
         // Use custom CSS classes to apply styling. This is defined in shared-styles.css.
         addClassName("centered-content");
+        printUiSettings();
 
         add(textField, button);
+    }
+
+    private void printUiSettings() {
+        UI.getCurrent().getPage().retrieveExtendedClientDetails(details -> {
+            System.out.println("Window width " + details.getWindowInnerWidth());
+            System.out
+                    .println("Window height " + details.getWindowInnerHeight());
+        });
+
+        System.out.println("ReconnectDialog grace period: " + UI.getCurrent()
+        .getReconnectDialogConfiguration().getDialogGracePeriod());
     }
 }
