@@ -8,14 +8,15 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
-import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.router.AfterNavigationEvent;
+import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.RouterLink;
 
-public class AppMainView extends AppLayout implements BeforeEnterObserver {
+public class AppMainView extends AppLayout implements AfterNavigationObserver {
 
     private Tabs tabs = new Tabs();
     private Map<Class<? extends Component>, Tab> navigationTargetToTab = new HashMap<>();
+
 
     public AppMainView() {
         addMenuTab("Main (accepts optional parameter)",
@@ -34,7 +35,8 @@ public class AppMainView extends AppLayout implements BeforeEnterObserver {
     }
 
     @Override
-    public void beforeEnter(BeforeEnterEvent event) {
-        this.tabs.setSelectedTab(this.navigationTargetToTab.get(event.getNavigationTarget()));
+    public void afterNavigation(AfterNavigationEvent event) {
+        getElement().executeJs(
+                "this.shadowRoot.querySelector(\"[content]\").scrollTop=0");
     }
 }

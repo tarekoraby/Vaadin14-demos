@@ -1,27 +1,34 @@
 package org.vaadin.tarek.applayout;
 
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.Route;
 
 @Route(value = "AppWithOptionalParametersView", layout = AppMainView.class)
-public class AppWithOptionalParametersView extends Div implements HasUrlParameter<String> {
+public class AppWithOptionalParametersView
+extends Div
+implements HasUrlParameter<String> {
 
-    Span span;
+    H1 heading;
 
     public AppWithOptionalParametersView() {
-        this.span = new Span("Default view content (without parameters)");
-        add(this.span);
+        this.heading = new H1("Default view content (without parameters)");
+        add(this.heading);
+        for (int i = 0; i < 50; i++) {
+            add(new Paragraph("Admin view content"));
+        }
     }
 
     @Override
     public void setParameter(BeforeEvent event,
             @OptionalParameter String parameter) {
         if (parameter != null) {
-            this.span.setText(parameter);
+            this.heading.setText(parameter);
         }
     }
+
 }

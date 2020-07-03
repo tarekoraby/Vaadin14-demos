@@ -1,12 +1,14 @@
 package org.vaadin.tarek.applayout;
 
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
 @Route(value = "AppAdminView", layout = AppMainView.class)
-public class AppAdminView extends Div {
+public class AppAdminView extends VerticalLayout {
     public AppAdminView() {
-        add(new Span("Admin view content"));
+        for (int i = 0; i < 50; i++) {
+            add(new Span("Admin view content"));
+        }
     }
 }
