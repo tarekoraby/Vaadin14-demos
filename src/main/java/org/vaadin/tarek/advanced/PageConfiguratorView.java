@@ -28,6 +28,7 @@ public class PageConfiguratorView extends VerticalLayout implements PageConfigur
         settings.addMetaTag("og:image", "http://ia.media-imdb.com/images/rock.jpg");
 
         settings.addLink("shortcut icon", "icons/favicon.ico");
-        settings.addFavIcon("icon", "icons/icon-192.png", "192x192");
+        settings.addFavIcon("icon", "icons/VaadinLogomark_RGB_500x500.png",
+                "192x192");
     }
 }
