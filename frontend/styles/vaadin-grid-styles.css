@@ -1,3 +1,10 @@
 :host(.styled-grid) [part~="cell"][first-column]{
 	border: 2px dotted DarkOrange;
 }
+
+/*for rounded borders*/
+:host(.styled-grid){
+	box-shadow: 0 0 0 1px var(--lumo-contrast-10pct);
+	border-radius: 50px;
+	overflow: hidden;
+}
