@@ -30,6 +30,12 @@ public class GridView extends VerticalLayout {
         // reorder the properties we use the 'setColumns' method.
         grid.setColumns("firstName", "lastName", "age");
 
+        // Remove and add columns manually
+        grid.removeAllColumns();
+        grid.addColumn(Person::getFirstName).setHeader("First Name");
+        grid.addColumn(Person::getLastName).setHeader("Last Name");
+        grid.addColumn(Person::getAge).setHeader("Age");
+
         add(grid);
     }
 
@@ -45,7 +51,7 @@ public class GridView extends VerticalLayout {
         }
 
         public String getFirstName() {
-            return firstName;
+            return this.firstName;
         }
 
         public void setFirstName(String firstName) {
@@ -53,7 +59,7 @@ public class GridView extends VerticalLayout {
         }
 
         public String getLastName() {
-            return lastName;
+            return this.lastName;
         }
 
         public void setLastName(String lastName) {
@@ -61,7 +67,7 @@ public class GridView extends VerticalLayout {
         }
 
         public int getAge() {
-            return age;
+            return this.age;
         }
 
         public void setAge(int age) {
