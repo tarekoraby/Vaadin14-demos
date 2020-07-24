@@ -2,6 +2,10 @@
 	border: 2px dotted DarkOrange;
 }
 
+:host(.styled-grid) [part~=header-cell]{
+	border: 2px solid DarkOrange !important;
+}
+
 /*for rounded borders*/
 :host(.styled-grid){
 	box-shadow: 0 0 0 1px var(--lumo-contrast-10pct);
