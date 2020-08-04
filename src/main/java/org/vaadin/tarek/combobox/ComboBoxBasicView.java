@@ -1,6 +1,10 @@
 package org.vaadin.tarek.combobox;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.combobox.ComboBox.ItemFilter;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -30,7 +34,27 @@ public class ComboBoxBasicView extends VerticalLayout {
         wideOverlayComboBox.getElement().setAttribute("theme",
                 "wide-combobox-overlay");
 
-        add(labelComboBox, placeHolderComboBox,
-                valueComboBox, wideOverlayComboBox);
+        ComboBox<String> filteringComboBox = new ComboBox<>();
+        List<String> elementsList = new ArrayList<>();
+        elementsList.add("Sun");
+        elementsList.add("Sµn");
+        elementsList.add("µmbrella");
+        elementsList.add("umbrella");
+        elementsList.add("Other text");
+
+        ItemFilter<String> filter = (element, filterString) -> {
+            if (filterString.contains("µ") || filterString.contains("u")) {
+                element = element.replace("µ", "u");
+                return element.startsWith(filterString.replace("µ", "u"));
+            } else {
+                return element.startsWith(filterString);
+            }
+        };
+
+        filteringComboBox.setItems(filter, elementsList);
+        filteringComboBox.setClearButtonVisible(true);
+
+        add(labelComboBox, placeHolderComboBox, valueComboBox,
+                wideOverlayComboBox, filteringComboBox);
     }
 }
