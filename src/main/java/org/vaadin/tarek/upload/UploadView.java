@@ -5,6 +5,7 @@ import org.vaadin.tarek.GreetService;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -13,6 +14,7 @@ import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
 import com.vaadin.flow.router.Route;
 
 @Route("uploadview")
+@CssImport(value = "./styles/vaadin-upload-styles.css", themeFor = "vaadin-upload")
 public class UploadView extends VerticalLayout {
 
     public UploadView() {
@@ -27,6 +29,9 @@ public class UploadView extends VerticalLayout {
         upload.addFileRejectedListener(event -> {
             Notification.show("Upload failed: " + event.getErrorMessage());
         });
+
+        upload.getElement().addEventListener("upload-before",
+                e -> System.out.println("upload-before event"));
 
         add(upload);
 
