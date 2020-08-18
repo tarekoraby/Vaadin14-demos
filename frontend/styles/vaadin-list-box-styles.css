@@ -1,0 +1,4 @@
+:host([theme~="styledListBox"]) ::slotted(vaadin-item) {
+  min-height: auto;
+  height: 25px;
+}
