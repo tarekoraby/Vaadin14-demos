@@ -10,9 +10,6 @@ import com.vaadin.flow.component.grid.dnd.GridDropMode;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-/**
- * The main view contains a button and a click listener.
- */
 @Route("GridDragAndDropView")
 public class GridDragAndDropView extends VerticalLayout {
 
