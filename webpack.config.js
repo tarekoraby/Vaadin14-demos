@@ -9,6 +9,18 @@ module.exports = merge(flowDefaults, {
 
 });
 
+/*const merge = require('webpack-merge');
+const flowDefaults = require('./webpack.generated.js');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+module.exports = merge(flowDefaults, {
+	plugins: [
+		new BundleAnalyzerPlugin({
+			analyzerMode: 'static',
+			openAnalyzer: true
+		})
+	]
+});*/
+
 /**
  * This file can be used to configure the flow plugin defaults.
  * <code>
