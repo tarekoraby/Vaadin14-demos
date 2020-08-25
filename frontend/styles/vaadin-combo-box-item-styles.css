@@ -1,0 +1,4 @@
+:host([theme~="condensed-list-combobox"])  {
+	    min-height: 10px;
+	    padding: 0;
+}

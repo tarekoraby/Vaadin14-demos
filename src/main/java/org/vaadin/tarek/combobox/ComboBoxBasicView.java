@@ -14,25 +14,27 @@ import com.vaadin.flow.router.Route;
  */
 @Route("ComboBoxBasicView")
 @CssImport(value = "./styles/vaadin-combobox-overlay.css", themeFor = "vaadin-combo-box-overlay")
+@CssImport(value = "./styles/vaadin-combo-box-item-styles.css", themeFor = "vaadin-combo-box-item")
 public class ComboBoxBasicView extends VerticalLayout {
 
     public ComboBoxBasicView() {
-        ComboBox<String> labelComboBox = new ComboBox<>();
-        labelComboBox.setItems("Option one", "Option two");
-        labelComboBox.setLabel("Label");
-
-        ComboBox<String> placeHolderComboBox = new ComboBox<>();
-        placeHolderComboBox.setItems("Option one", "Option two");
-        placeHolderComboBox.setPlaceholder("Placeholder");
-
-        ComboBox<String> valueComboBox = new ComboBox<>();
-        valueComboBox.setItems("Option one", "Option two", "Option three");
-        valueComboBox.setValue("Option one");
+        ComboBox<String> simpleComboBox = new ComboBox<>();
+        simpleComboBox.setItems("Option one", "Option two", "Option three");
+        simpleComboBox.setValue("Option one");
+        simpleComboBox.setLabel("Simple ComboBox");
 
         ComboBox<String> wideOverlayComboBox = new ComboBox<>();
         wideOverlayComboBox.setItems("Option one", "Option two");
+        wideOverlayComboBox.setPlaceholder("Placeholder");
         wideOverlayComboBox.getElement().setAttribute("theme",
                 "wide-combobox-overlay");
+        wideOverlayComboBox.setLabel("Wide-Overlay ComboBox");
+
+        ComboBox<String> condensedListComboBox = new ComboBox<>();
+        condensedListComboBox.setItems("Option one", "Option two");
+        condensedListComboBox.getElement().setAttribute("theme",
+                "condensed-list-combobox");
+        condensedListComboBox.setLabel("Condensed-List ComboBox");
 
         ComboBox<String> filteringComboBox = new ComboBox<>();
         List<String> elementsList = new ArrayList<>();
@@ -53,8 +55,9 @@ public class ComboBoxBasicView extends VerticalLayout {
 
         filteringComboBox.setItems(filter, elementsList);
         filteringComboBox.setClearButtonVisible(true);
+        filteringComboBox.setLabel("Filtering ComboBox");
 
-        add(labelComboBox, placeHolderComboBox, valueComboBox,
-                wideOverlayComboBox, filteringComboBox);
+        add(simpleComboBox, wideOverlayComboBox, condensedListComboBox,
+                filteringComboBox);
     }
 }
