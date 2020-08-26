@@ -1,0 +1,8 @@
+[part~="navbar"] ::slotted(a:not(:first-of-type)):before  {
+	padding: .5em ;
+	content: '||';
+}
+
+/*[part~="navbar"] ::slotted(a:first-of-type):before  {
+	content: '' !important;
+}*/
