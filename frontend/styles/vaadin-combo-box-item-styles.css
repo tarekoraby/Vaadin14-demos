@@ -1,4 +1,47 @@
-:host([theme~="condensed-list-combobox"])  {
-	    min-height: 10px;
-	    padding: 0;
+:host([theme~="custom-spacing"]) {
+	padding: 0;
+	min-height: 0;
+}
+
+:host([theme~="hide-selection-button"])::before {
+	display: none;
+}
+
+:host([theme~="custom-item-background"]) span.bad:hover, 
+:host([theme~="custom-item-background"][selected]) span.bad	{
+	background-color: coral;
+}
+
+:host([theme~="custom-item-background"]) span.good:hover,
+:host([theme~="custom-item-background"][selected]) span.good {
+	background-color: lightgreen;
+}
+
+:host([theme~="custom-item-background"]) span {
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	padding: 1em;
+}
+
+:host([theme~="custom-item-background"]) {
+	padding: 0;
+}
+
+:host([theme~="custom-item-background"])::before {
+	display: none;
+}
+
+
+
+:host([theme~="custom-selection-icons"])::before {
+	opacity: 1 !important;
+}
+
+:host([theme~="custom-selection-icons"][selected])::before {
+	content: var(--lumo-icons-checkmark) !important;
+}
+
+:host([theme~="custom-selection-icons"])::before {
+	content: var(--lumo-icons-cross) !important;
 }
