@@ -1,5 +1,6 @@
 package org.vaadin.tarek.upload;
 
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -23,9 +24,22 @@ public class UploadView extends VerticalLayout {
             Notification.show("Upload failed: " + event.getErrorMessage());
         });
 
-        upload.getElement().addEventListener("upload-before",
-                e -> System.out.println("upload-before event"));
+        Button clear = new Button("Clear upload list",
+                e -> upload.getElement().executeJs("this.files=[]"));
 
-        add(upload);
+        Upload uploadStyled = new Upload(buffer);
+        uploadStyled.setClassName("styled-upload");
+
+        Upload uploadWithExtraButton = new Upload(buffer);
+        Button button = new Button("Extra button",
+                e -> Notification.show("Button cliked!"));
+        uploadWithExtraButton.getElement().appendChild(button.getElement());
+        uploadWithExtraButton.getElement().executeJs(
+                "var addFilesDiv = $0.shadowRoot.querySelector('[part=\"primary-buttons\"]');\r\n"
+                        + "        var newButton = $1; \r\n"
+                        + "        addFilesDiv.insertBefore(newButton, addFilesDiv.firstElementChild);",
+                uploadWithExtraButton, button);
+
+        add(upload, clear, uploadStyled, uploadWithExtraButton);
     }
 }
