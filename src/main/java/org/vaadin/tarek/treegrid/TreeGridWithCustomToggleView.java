@@ -11,11 +11,11 @@ import com.vaadin.flow.component.treegrid.TreeGrid;
 import com.vaadin.flow.data.provider.hierarchy.TreeData;
 import com.vaadin.flow.router.Route;
 
-@Route("TreeGridWithDoubleClickView")
+@Route("TreeGridWithCustomToggleView")
 @CssImport(value = "./styles/vaadin-grid-tree-toggle-styles.css", themeFor = "vaadin-grid-tree-toggle")
-public class TreeGridWithDoubleClickView extends VerticalLayout {
+public class TreeGridWithCustomToggleView extends VerticalLayout {
 
-    public TreeGridWithDoubleClickView() {
+    public TreeGridWithCustomToggleView() {
         TreeGrid<String> grid = new TreeGrid<>();
 
         String root = "Root";
