@@ -1,0 +1,4 @@
+:host(.non-wrapping) [part="value"] {
+	overflow: auto hidden;
+	white-space: pre;
+}
