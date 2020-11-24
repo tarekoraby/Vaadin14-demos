@@ -10,20 +10,26 @@ public class EnhancedTreeGridView extends VerticalLayout {
     public EnhancedTreeGridView() {
         EnhancedTreeGrid<String> enhancedTreeGrid = new EnhancedTreeGrid<>();
         enhancedTreeGrid.addHierarchyColumn(String::toString)
-                .setHeader("Exam name");
+                .setHeader("Header");
 
         TreeData<String> treeData = enhancedTreeGrid.getTreeData();
-        treeData.addItem(null, "Exam #1");
-        treeData.addItem("Exam #1", "Exam #1 - item #1");
-        treeData.addItem("Exam #1", "Exam #1 - item #2");
-        treeData.addItem("Exam #1", "Exam #1 - item #3");
-        treeData.addItem(null, "Exam #2");
-        treeData.addItem("Exam #2", "Exam #2 - item #1");
-        treeData.addItem("Exam #2", "Exam #2 - item #2");
-
-        enhancedTreeGrid.select("Exam #2 - item #2");
+        treeData.addItem(null, "Parent #1");
+        treeData.addItem("Parent #1", "Item #1");
+        treeData.addItem("Parent #1", "Item #2 (Non-selectable)");
+        treeData.addItem("Parent #1", "Item #3");
+        treeData.addItem(null, "Parent #2 (Non-selectable)");
+        treeData.addItem("Parent #2 (Non-selectable)", "Item #4");
+        treeData.addItem("Parent #2 (Non-selectable)",
+                "Item #5 (Non-selectable)");
         enhancedTreeGrid.expand(treeData.getRootItems());
 
+        enhancedTreeGrid.setSelectabilityCriteria(
+                item -> !item.toString().contains("Non-selectable"));
+
+
         add(enhancedTreeGrid);
+
+        enhancedTreeGrid.addValueChangeListener(
+                e -> System.out.println(enhancedTreeGrid.getSelectedItems()));
     }
 }
