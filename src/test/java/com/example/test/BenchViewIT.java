@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import com.vaadin.flow.component.textfield.testbench.TextFieldElement;
 import com.vaadin.testbench.IPAddress;
 
-public class TestBenchViewIT extends AbstractViewTest {
+public class BenchViewIT extends AbstractViewTest {
 
     @Test
     public void foo() {
