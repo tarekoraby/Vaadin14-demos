@@ -31,5 +31,16 @@ public class ResponsiveLayout extends VerticalLayout {
                 new FormLayout.ResponsiveStep("32em", 2),
                 new FormLayout.ResponsiveStep("40em", 3));
         add(nameLayout);
+
+        FormLayout layoutWithFormItems = new FormLayout();
+
+        TextField firstName = new TextField();
+        firstName.setPlaceholder("John");
+        layoutWithFormItems.addFormItem(firstName, "First name");
+
+        TextField lastName = new TextField();
+        lastName.setPlaceholder("Doe");
+        layoutWithFormItems.addFormItem(lastName, "Last name");
+        add(layoutWithFormItems);
     }
 }
