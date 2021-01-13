@@ -1,0 +1,8 @@
+:host(.my-styled-select) ::part(value)::placeholder {
+	transition: opacity 0.175s 0.1s;
+	opacity: 0.9;
+}
+
+:host(.my-styled-select) vaadin-item {
+	font-weight: 800 !important;
+}
