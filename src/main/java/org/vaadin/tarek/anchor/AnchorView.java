@@ -15,6 +15,9 @@ public class AnchorView extends VerticalLayout {
                 "Open in new tab...");
         anchorTwo.setTarget("_blank");
 
-        add(anchorOne, anchorTwo);
+        Anchor downloadLink = new Anchor("icons/icon-16x16.png", "Download");
+        //downloadLink.getElement().setAttribute("download", true);
+
+        add(anchorOne, anchorTwo, downloadLink);
     }
 }
