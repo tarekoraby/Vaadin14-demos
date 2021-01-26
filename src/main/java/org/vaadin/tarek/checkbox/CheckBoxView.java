@@ -5,6 +5,7 @@ import java.util.Collections;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.checkbox.CheckboxGroup;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
@@ -21,6 +22,15 @@ public class CheckBoxView extends VerticalLayout {
         Checkbox checkboxSwapped = new Checkbox("Swapped label");
         checkboxSwapped.addClassName("swapped");
 
-        add(checkboxGroup, checkboxSwapped);
+        CheckboxGroup<String> checkboxGroupRendered = new CheckboxGroup<>();
+        checkboxGroupRendered.setLabel("Label");
+        checkboxGroupRendered.setItems("Option one", "Option two");
+        checkboxGroupRendered.getChildren().forEach(item -> addRenderedLabel((Checkbox) item));
+
+        add(checkboxGroup, checkboxSwapped, checkboxGroupRendered);
+    }
+
+    private void addRenderedLabel(Checkbox item) {
+        item.setLabelAsHtml(VaadinIcon.ACADEMY_CAP.create().getElement().getOuterHTML() + "<br>" + item.getLabel());
     }
 }
