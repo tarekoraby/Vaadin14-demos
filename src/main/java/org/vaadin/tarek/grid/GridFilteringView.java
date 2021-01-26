@@ -41,7 +41,12 @@ public class GridFilteringView extends VerticalLayout {
     }
 
     private void filterGrid(Integer minAge) {
-        dataProvider.addFilter(person -> person.getAge() > minAge);
+        dataProvider.setFilter(person -> {
+            if (minAge == null) {
+                return true;
+            }
+            return person.getAge() > minAge;
+        });
     }
 
     public class Person {
