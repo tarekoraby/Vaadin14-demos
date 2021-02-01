@@ -1,0 +1,11 @@
+:host(.custom-button) button{
+	padding: 0;
+}
+
+:host([theme~="myConfirmDialog"]) {
+	background-color: yellow;
+}
+
+:host([theme~="myConfirmDialog"]:hover) {
+	background-color: red;
+}

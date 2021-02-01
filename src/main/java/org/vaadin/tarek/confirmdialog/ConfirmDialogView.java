@@ -10,6 +10,7 @@ import com.vaadin.flow.router.Route;
 
 @Route("ConfirmDialogView")
 @CssImport(value = "./styles/vaadin-confirm-dialog-styles.css", themeFor = "vaadin-confirm-dialog")
+@CssImport(value = "./styles/vaadin-button-styles.css", themeFor = "vaadin-button")
 public class ConfirmDialogView extends VerticalLayout {
 
     public ConfirmDialogView() {
@@ -20,6 +21,8 @@ public class ConfirmDialogView extends VerticalLayout {
         ConfirmDialog styledMessageDialog = createDialog();
         String themeName = "myConfirmDialog";
         styledMessageDialog.getElement().setAttribute("theme", themeName);
+        styledMessageDialog.setConfirmButtonTheme(themeName);
+
         Button buttonB = new Button("Open dialog wih styled message", e -> {
             styledMessageDialog.open();
             String color = "green";
