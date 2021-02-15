@@ -40,6 +40,11 @@ public class UploadView extends VerticalLayout {
                         + "        addFilesDiv.insertBefore(newButton, addFilesDiv.firstElementChild);",
                 uploadWithExtraButton, button);
 
-        add(upload, clear, uploadStyled, uploadWithExtraButton);
+        Upload uploadWithCustomButton = new Upload(buffer);
+
+        Button uploadButton = new Button("Click me!", e -> System.out.println("Upload button clicked!"));
+        uploadWithCustomButton.setUploadButton(uploadButton);
+
+        add(upload, clear, uploadStyled, uploadWithExtraButton, uploadWithCustomButton);
     }
 }
