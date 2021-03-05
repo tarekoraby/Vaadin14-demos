@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.data.provider.ListDataProvider;
@@ -16,6 +18,7 @@ import com.vaadin.flow.router.Route;
 @Route("GridFilteringView")
 public class GridFilteringView extends VerticalLayout {
 
+    VerticalLayout filteredItemsLayout = new VerticalLayout();
     ListDataProvider<Person> dataProvider;
 
     public GridFilteringView() {
@@ -35,9 +38,28 @@ public class GridFilteringView extends VerticalLayout {
         IntegerField minAge = new IntegerField("Min age");
         minAge.setValue(0);
         minAge.setValueChangeMode(ValueChangeMode.EAGER);
-        minAge.addValueChangeListener(e -> filterGrid(e.getValue()));
+        minAge.addValueChangeListener(e -> {
+            filterGrid(e.getValue());
+            List<Person> filteredList = new ArrayList<>();
+            for (Person person : personList) {
+                if (dataProvider.getFilter().test(person)) {
+                    filteredList.add(person);
+                }
+            }
+            updateFilteredItemsLayout(filteredList);
+        });
 
-        add(grid, minAge);
+        updateFilteredItemsLayout(personList);
+
+        add(grid, minAge, filteredItemsLayout);
+    }
+
+    private void updateFilteredItemsLayout(List<Person> filteredList) {
+        filteredItemsLayout.removeAll();
+        filteredItemsLayout.add(new H3("Filtered items"));
+        for (Person person : filteredList) {
+            filteredItemsLayout.add(new Span(person.getFirstName() + " " + person.getLastName() + ": " + person.age));
+        }
     }
 
     private void filterGrid(Integer minAge) {
