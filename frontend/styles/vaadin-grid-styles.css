@@ -1,14 +1,19 @@
-:host(.styled-grid) [part~="body-cell"]{
+:host(.styled-grid) [part~="body-cell"] {
 	border: 2px dotted DarkOrange;
 }
 
-:host(.styled-grid) [part~=header-cell]{
+:host(.styled-grid) [part~=header-cell] {
 	border: 2px solid DarkOrange !important;
 }
 
 /*for rounded borders*/
-:host(.styled-grid){
-	box-shadow: 0 0 0 1px var(--lumo-contrast-10pct);
+:host(.styled-grid) {
+	box-shadow: 0 0 0 1px var(- -lumo-contrast-10pct);
 	border-radius: 50px;
 	overflow: hidden;
+}
+
+:host(.styled-grid) [selected] * {
+	border: 1px solid rebeccapurple !important;
+	background-color: aqua;
 }
