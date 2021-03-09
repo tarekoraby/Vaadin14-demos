@@ -1,4 +1,4 @@
-:host(.styled-grid) [part~="cell"][first-column]{
+:host(.styled-grid) [part~="body-cell"]{
 	border: 2px dotted DarkOrange;
 }
 
