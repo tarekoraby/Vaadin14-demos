@@ -17,3 +17,7 @@
 	border: 1px solid rebeccapurple !important;
 	background-color: aqua;
 }
+
+:host(.multiline) [part~="body-cell"] ::slotted(vaadin-grid-cell-content) {
+   white-space: pre-line !important;
+}
