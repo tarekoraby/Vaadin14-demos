@@ -12,9 +12,7 @@ class HelloLit extends ThemableElement {
     </div>`;
   }
 
-  static get is() {
-    return 'hello-lit';
-  }
+  static is = 'hello-lit';
 }
 
 customElements.define('hello-lit', HelloLit);
