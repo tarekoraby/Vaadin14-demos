@@ -8,10 +8,12 @@ import com.vaadin.flow.component.charts.model.PlotOptionsColumn;
 import com.vaadin.flow.component.charts.model.Stacking;
 import com.vaadin.flow.component.charts.model.XAxis;
 import com.vaadin.flow.component.charts.model.YAxis;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
 @Route("ChartsView")
+@CssImport(value = "./styles/vaadin-chart-styles.css", themeFor = "vaadin-chart", include = "vaadin-chart-default-theme")
 public class ChartsView extends VerticalLayout {
 
     public ChartsView() {
