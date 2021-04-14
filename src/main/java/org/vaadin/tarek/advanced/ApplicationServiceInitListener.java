@@ -91,6 +91,10 @@ public class ApplicationServiceInitListener
                     });
         });
 
+        serviceInitEvent.getSource().addSessionInitListener(initEvent -> {
+            initEvent.getSession().setErrorHandler(new CustomExceptionHandler());
+        });
+
         serviceInitEvent.getSource().addSessionDestroyListener(destroyEvent -> {
             print("Session Destroyed " + Instant.now() + " "
                     + destroyEvent.getSession().toString());
